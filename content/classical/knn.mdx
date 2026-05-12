@@ -1,0 +1,24 @@
+---
+title: "K-Nearest Neighbors"
+description: "Prediction by proximity. Explore how algorithms use similarity and majority voting to classify unknown data."
+era: "classical"
+difficulty: "Beginner"
+tags: ["supervised", "classification", "distance"]
+publishedAt: "2026-05-13"
+author: "Hasibullah"
+hasVisualizer: true
+---
+
+# K-Nearest Neighbors (KNN)
+
+If you want to know who someone is, look at who they hang out with. That is the core philosophy of K-Nearest Neighbors.
+
+KNN is a **supervised** learning algorithm. It relies on a dataset where every point already has a known label. When we introduce a new, unknown data point, the algorithm measures the distance to its neighbors, selects the *k* closest ones, and takes a majority vote.
+
+Drag the target point below and adjust *k* to see the decision boundary shift in real-time.
+
+<KNNCanvas />
+
+### The Curse of Dimensionality
+
+While KNN is beautifully simple in 2D space, it breaks down in high dimensions. As you add more features (like going from 2D to 100D), the concept of "distance" warps, and points effectively become equidistant from each other.

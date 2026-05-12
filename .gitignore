@@ -1,0 +1,15 @@
+# AI & IDE Files
+.cursor/
+.cursorrules
+.claude/
+.claude.json
+.vscode/
+.idea/
+*.log
+
+# Standard Next.js & Node (Ensure these are present)
+node_modules/
+.next/
+out/
+.env
+.env*.local

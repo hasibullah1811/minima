@@ -1,0 +1,66 @@
+---
+title: "K-Means Clustering"
+description: "Understand how data organizes itself. An interactive look at centroids, distance metrics, and unsupervised learning."
+era: "classical"
+difficulty: "Beginner"
+tags: ["unsupervised", "clustering", "geometry"]
+publishedAt: "2026-05-12"
+author: "Hasibullah"
+hasVisualizer: true
+---
+
+# K-Means Clustering
+
+Use the sandbox right below once you’ve skimmed the next few sections—**Assign**, **Update**, and the inertia readout are the same loop described in words.
+
+<KMeansCanvas />
+
+---
+
+## The hook (a kitchen on every corner)
+
+Imagine a pizza chain opening *k* new kitchens. Every customer lives somewhere on the map. The company wants each kitchen to “own” the customers closest to it—so drivers travel shorter routes on average.
+
+K-Means is the spreadsheet version of that puzzle. You don’t label anyone in advance; you only say how many hubs you want. The algorithm keeps nudging those hubs until deliveries feel as tight as possible.
+
+---
+
+## The core mechanics
+
+*k* is simply *how many groups* you ask for. If *k* equals three, you are asking for three teams—not three specific people, just three buckets the data should sort into.
+
+> **Centroid:** The “center of gravity” for a group—a single *(x, y)* point that stands in for the whole cluster right now. Think of it as the pin on the map where a kitchen *would* sit if it had to represent everyone assigned to it.
+
+Each data point has coordinates (for us, *X* and *Y*). To decide who belongs to which kitchen, we use **Euclidean distance**—the straight-line “as the crow flies” length you’d measure with a ruler. Smaller distance means “you belong to this centroid today.”
+
+The algorithm’s **goal** is to shrink **inertia** (also called **within-cluster sum of squares**). That’s a fancy name for a simple idea: *add up the squared distances from every point to its centroid and make that total as small as you can.* Squaring punishes far-away outliers extra hard, so the solution prefers tight, honest clusters over one giant stretch.
+
+---
+
+## How it moves (two beats, on repeat)
+
+**Assign:** Every point picks the nearest centroid. That’s the “which kitchen delivers my pizza?” step.
+
+**Update:** Each centroid jumps to the average location of the points that chose it. That’s the “move the kitchen to where my customers actually cluster” step.
+
+Repeat until the centroids barely budge. You’ve found a stable layout—not always the *best possible* layout globally, but one that makes local sense.
+
+---
+
+## Where K-Means shows up for real
+
+- **Customer segmentation:** Marketing teams group shoppers by behavior so campaigns feel personal instead of spray-and-pray.
+
+- **Image color compression:** Old-school palettes often come from clustering millions of pixel colors into *k* representative swatches.
+
+- **Document or ticket routing:** Support desks cluster similar issues so the right playbook rises to the top.
+
+---
+
+## The Achilles heel (why the pretty picture breaks)
+
+K-Means secretly believes the world is made of **round-ish blobs** of similar width. When data looks like interlocking crescents (**Two Moons** in the sandbox), a round centroid cannot hug the curve—so the algorithm slices through the moon instead of tracing it.
+
+Initialization matters, too. If all the starting centroids land in one corner (**Bad Spawn**), they can get trapped chasing a *local* minimum—a layout that looks stable but isn’t the global best. That’s why practitioners shuffle seeds, run the algorithm many times, or reach for smarter cousins when the geometry gets cruel.
+
+You’re not doing anything wrong when the sandbox “fails.” You’re watching the assumptions leak out—which is exactly how you graduate from button-pressing to real modeling judgment.

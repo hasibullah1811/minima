@@ -1,0 +1,103 @@
+/**
+ * Global design tokens & motion
+ * ----------------------------
+ * Tailwind layers:
+ * - `@tailwind base` — Preflight + our CSS variables on `:root`.
+ * - `@tailwind components` — reserved for small, reusable non-utility patterns.
+ * - `@tailwind utilities` — Tailwind’s generated utility classes.
+ *
+ * Theme strategy:
+ * - We ship **dark-first** UI: the `<html>` element gets `class="dark"` in `layout.tsx`.
+ * - Semantic colors are expressed as CSS variables so we can evolve the palette
+ *   (or add a light theme later) without rewiring every component.
+ *
+ * Motion:
+ * - “Pulse-like” accents are implemented as reusable keyframe utilities (`--pulse-*`)
+ *   consumed by lesson chrome and interactive placeholders (e.g. visualizers).
+ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Surfaces */
+    --surface-0: 10 10 10; /* near-black */
+    --surface-1: 23 23 23;
+    --surface-2: 38 38 38;
+
+    /* Text */
+    --foreground: 250 250 250;
+    --muted: 163 163 163;
+
+    /* Accent (cool cyan — reads well on deep black) */
+    --accent: 34 211 238;
+    --accent-soft: 103 232 249;
+
+    /* Motion tokens for “pulse-like” micro-interactions */
+    --pulse-duration: 1.6s;
+    --pulse-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply min-h-dvh bg-neutral-950 text-neutral-50 antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  ::selection {
+    @apply bg-cyan-500/30 text-white;
+  }
+}
+
+@layer utilities {
+  /**
+   * `animate-pulse-ring` — soft outer glow that expands/fades; useful for loading
+   * skeletons around visualizers or active nav pills.
+   */
+  .animate-pulse-ring {
+    animation: pulse-ring var(--pulse-duration) var(--pulse-ease) infinite;
+  }
+
+  /**
+   * `animate-pulse-glow` — subtle opacity breathing on text/icons (active state).
+   */
+  .animate-pulse-glow {
+    animation: pulse-glow calc(var(--pulse-duration) * 0.75) var(--pulse-ease)
+      infinite;
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgb(var(--accent) / 0.35);
+  }
+  70% {
+    box-shadow: 0 0 0 14px rgb(var(--accent) / 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgb(var(--accent) / 0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+/* Prose tuning: keep MDX readable inside dark chrome */
+.prose-invert {
+  --tw-prose-body: theme(colors.neutral.200);
+  --tw-prose-headings: theme(colors.neutral.50);
+  --tw-prose-links: theme(colors.cyan.300);
+  --tw-prose-bold: theme(colors.white);
+  --tw-prose-quotes: theme(colors.neutral.300);
+}
