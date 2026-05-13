@@ -11,14 +11,52 @@ hasVisualizer: true
 
 # K-Nearest Neighbors (KNN)
 
-If you want to know who someone is, look at who they hang out with. That is the core philosophy of K-Nearest Neighbors.
+## The core concept
 
-KNN is a **supervised** learning algorithm. It relies on a dataset where every point already has a known label. When we introduce a new, unknown data point, the algorithm measures the distance to its neighbors, selects the *k* closest ones, and takes a majority vote.
+Picture a house you have never seen before. You want a rough guess at its price. A simple approach: look at the three closest homes on the same street, check what they sold for, and average those numbers. You are letting **nearby examples** speak for the unknown one.
+
+K-Nearest Neighbors does the same thing in data space. Each training point has a **label** (for us, blue or pink). For a new point, you measure how “far” it is from everyone else, grab the *k* closest neighbors, and let them **vote**. The winning label becomes your prediction.
+
+That is why people say: *if you want to know who someone is, look at who they hang out with.*
+
+KNN is **supervised**: the answers already exist in the training set. The model does not build a long equation up front—it **remembers** the examples and decides at query time.
 
 Drag the target point below and adjust *k* to see the decision boundary shift in real-time.
 
 <KNNCanvas />
 
-### The Curse of Dimensionality
+## Real-world examples
 
-While KNN is beautifully simple in 2D space, it breaks down in high dimensions. As you add more features (like going from 2D to 100D), the concept of "distance" warps, and points effectively become equidistant from each other.
+- **Movie or music picks:** “People who liked what you liked also liked…” often starts from a neighborhood of similar users or items.
+
+- **Basic image tagging:** Pixels can be treated as features; similar images (or patches) vote on a label like “cat” vs “dog” in simple pipelines.
+
+- **Spam or fraud flags:** A new email can be compared to past emails that were marked spam or not spam, using distance in word-count space.
+
+## A tiny bit of code (Python)
+
+Libraries hide the loops, but the idea is identical: store the data, find neighbors, vote.
+
+```python
+from sklearn.neighbors import KNeighborsClassifier
+
+# X = features (e.g. rows of numbers), y = known labels
+X_train, y_train = [[0, 0], [1, 1]], [0, 1]
+knn = KNeighborsClassifier(n_neighbors=1)  # k = 1 here
+
+knn.fit(X_train, y_train)   # “fit” = remember the training points (no heavy training phase)
+
+print(knn.predict([[0.5, 0.5]]))  # “predict” = find neighbors & vote for this new point
+```
+
+`fit` stores the dataset. `predict` runs the distance + vote logic for each new row you pass in.
+
+## Pros and cons
+
+**Pro:** Easy to explain, no long training phase, and it works surprisingly well when the geometry is friendly.
+
+**Con:** Prediction can get slow on huge datasets (every guess touches many points). It is also sensitive to noisy labels and to how you scale your features.
+
+### The curse of dimensionality
+
+While KNN is beautifully simple in 2D space, it breaks down in high dimensions. As you add more features (like going from 2D to 100D), the idea of “distance” gets strange, and points can start to feel almost equally far apart.

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import {
   ArrowRight,
+  Code2,
   Cpu,
   Github,
   Network,
@@ -139,34 +140,53 @@ export default function HomePage() {
               </p>
             </div>
             <nav
-              className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 sm:justify-end"
+              className="flex flex-col items-center gap-4 sm:items-end"
               aria-label="Footer"
             >
-              <a
-                href="https://github.com"
-                className="inline-flex items-center gap-1.5 text-xs text-neutral-600 transition-colors hover:text-neutral-400"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                <Github className="size-3.5" aria-hidden />
-                GitHub
-              </a>
-              <a
-                href="https://twitter.com"
-                className="text-xs text-neutral-600 transition-colors hover:text-neutral-400"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                Twitter / X
-              </a>
-              <a
-                href="https://github.com"
-                className="text-xs text-neutral-600 transition-colors hover:text-neutral-400"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                Contribute
-              </a>
+              <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+                <a
+                  href="https://github.com/hasibullah1811"
+                  className="group inline-flex items-center gap-2 rounded-lg px-2 py-1 text-xs text-neutral-500 transition-all duration-500 ease-out hover:text-neutral-200 hover:shadow-[0_0_14px_rgba(34,211,238,0.18)]"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <Github
+                    className="size-3.5 shrink-0 opacity-70 transition-all duration-500 ease-out group-hover:opacity-100 group-hover:drop-shadow-[0_0_6px_rgba(34,211,238,0.45)]"
+                    aria-hidden
+                  />
+                  Built by Hasibullah
+                </a>
+                <a
+                  href="https://github.com/hasibullah1811/minima"
+                  className="group inline-flex items-center gap-2 rounded-lg px-2 py-1 text-xs text-neutral-500 transition-all duration-500 ease-out hover:text-neutral-200 hover:shadow-[0_0_14px_rgba(34,211,238,0.18)]"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <Code2
+                    className="size-3.5 shrink-0 opacity-70 transition-all duration-500 ease-out group-hover:opacity-100 group-hover:drop-shadow-[0_0_6px_rgba(34,211,238,0.45)]"
+                    aria-hidden
+                  />
+                  View Source/Contribute
+                </a>
+              </div>
+              {/* <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 sm:justify-end">
+                <a
+                  href="https://twitter.com"
+                  className="text-xs text-neutral-600 transition-colors hover:text-neutral-400"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Twitter / X
+                </a>
+                <a
+                  href="https://github.com/hasibullah1811/minima"
+                  className="text-xs text-neutral-600 transition-colors hover:text-neutral-400"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Contribute
+                </a>
+              </div> */}
             </nav>
           </div>
         </footer>
