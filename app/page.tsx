@@ -3,9 +3,7 @@
 import Link from "next/link";
 import {
   ArrowRight,
-  Code2,
   Cpu,
-  Github,
   Network,
   Sparkles,
   Trees,
@@ -19,8 +17,6 @@ export default function HomePage() {
     const t = window.setTimeout(() => setLoading(false), 1500);
     return () => window.clearTimeout(t);
   }, []);
-
-  const year = new Date().getFullYear();
 
   return (
     <>
@@ -36,8 +32,8 @@ export default function HomePage() {
         </p>
       </div>
 
-      <div className="min-h-dvh bg-neutral-950 text-neutral-300">
-        <main className="mx-auto max-w-4xl px-6 pb-24 pt-20 sm:pt-28">
+      <div className="flex min-h-full flex-1 flex-col text-neutral-300">
+        <main className="mx-auto w-full max-w-4xl flex-1 px-6 pb-16 pt-20 sm:pt-28">
           <section className="text-center sm:text-left">
             <p className="text-xs font-medium uppercase tracking-[0.22em] text-neutral-500">
               Open curriculum
@@ -128,68 +124,6 @@ export default function HomePage() {
             </div>
           </section>
         </main>
-
-        <footer className="mt-24 border-t border-neutral-900 py-12">
-          <div className="mx-auto flex max-w-4xl flex-col items-center justify-between gap-8 px-6 sm:flex-row sm:items-start">
-            <div className="text-center sm:text-left">
-              <p className="text-sm font-semibold tracking-[0.2em] text-white">
-                MINIMA
-              </p>
-              <p className="mt-2 text-xs text-neutral-600">
-                © {year} Minima. Open source.
-              </p>
-            </div>
-            <nav
-              className="flex flex-col items-center gap-4 sm:items-end"
-              aria-label="Footer"
-            >
-              <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
-                <a
-                  href="https://github.com/hasibullah1811"
-                  className="group inline-flex items-center gap-2 rounded-lg px-2 py-1 text-xs text-neutral-500 transition-all duration-500 ease-out hover:text-neutral-200 hover:shadow-[0_0_14px_rgba(34,211,238,0.18)]"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  <Github
-                    className="size-3.5 shrink-0 opacity-70 transition-all duration-500 ease-out group-hover:opacity-100 group-hover:drop-shadow-[0_0_6px_rgba(34,211,238,0.45)]"
-                    aria-hidden
-                  />
-                  Built by Hasibullah
-                </a>
-                <a
-                  href="https://github.com/hasibullah1811/minima"
-                  className="group inline-flex items-center gap-2 rounded-lg px-2 py-1 text-xs text-neutral-500 transition-all duration-500 ease-out hover:text-neutral-200 hover:shadow-[0_0_14px_rgba(34,211,238,0.18)]"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  <Code2
-                    className="size-3.5 shrink-0 opacity-70 transition-all duration-500 ease-out group-hover:opacity-100 group-hover:drop-shadow-[0_0_6px_rgba(34,211,238,0.45)]"
-                    aria-hidden
-                  />
-                  View Source/Contribute
-                </a>
-              </div>
-              {/* <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 sm:justify-end">
-                <a
-                  href="https://twitter.com"
-                  className="text-xs text-neutral-600 transition-colors hover:text-neutral-400"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  Twitter / X
-                </a>
-                <a
-                  href="https://github.com/hasibullah1811/minima"
-                  className="text-xs text-neutral-600 transition-colors hover:text-neutral-400"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  Contribute
-                </a>
-              </div> */}
-            </nav>
-          </div>
-        </footer>
       </div>
     </>
   );
