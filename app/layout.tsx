@@ -31,24 +31,26 @@ export const metadata: Metadata = {
   authors: [{ name: "Hasibullah", url: "https://github.com/hasibullah1811" }],
   creator: "Hasibullah",
   openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: siteUrl,
-    siteName: "Minima",
-    title: "Minima | Machine Learning, Made Visible",
-    description:
-      "An open-source, interactive educational platform designed to strip away the black box abstraction of Machine Learning through pure geometric intuition.",
+    title: 'Minima | Machine Learning, Made Visible',
+    description: 'An open-source, interactive exploration of ML algorithms.',
+    url: 'https://tryminima.com', 
+    siteName: 'Minima',
+    images: [
+      {
+        url: '/opengraph-image.png', // Next.js auto-detects this from /app
+        width: 1200,
+        height: 630,
+        alt: 'Minima | Machine Learning, Made Visible',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Minima | Machine Learning, Made Visible",
-    description:
-      "An open-source, interactive educational platform designed to strip away the black box abstraction of Machine Learning through pure geometric intuition.",
-    creator: "@hasibullah1811",
-  },
-  robots: {
-    index: true,
-    follow: true,
+    card: 'summary_large_image',
+    title: 'Minima | Machine Learning, Made Visible',
+    description: 'An open-source, interactive exploration of ML algorithms.',
+    images: ['/opengraph-image.png'],
   },
 };
 
